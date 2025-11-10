@@ -25,6 +25,6 @@ variable "aks_cluster_name" {
  variable "node_vm_size" {
    description = "The size of the virtual machines for the AKS nodes"
    type        = string
-   default     = "standard_a2_v2"
+   default     = "standard_b2ps_v2"
  }
  
