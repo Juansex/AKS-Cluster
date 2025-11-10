@@ -13,7 +13,7 @@ variable "aks_cluster_name" {
  variable "location" {
    description = "The Azure region where the resources will be deployed"
    type        = string
-   default     = "East US"
+   default     = "West Europe"
  }
 
  variable "node_count" {
