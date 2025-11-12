@@ -3,15 +3,15 @@
 
 ## 📋 Descripción del Proyecto
 
-Este proyecto implementa la creación de un **cluster de Azure Kubernetes Service (AKS)** utilizando **Terraform** como herramienta de Infrastructure as Code (IaC). Una vez creado el cluster, se despliega una aplicación **Nginx** con múltiples réplicas y se expone mediante un servicio LoadBalancer.
+Este proyecto implementa la creación de un **cluster de Azure Kubernetes Service (AKS)** utilizando **Terraform** como herramienta de Infrastructure as Code (IaC). Una vez creado el cluster, se despliega una aplicación **Nginx** con múltiples réplicas y se expone mediante un servicio LoadBalancer para acceso público.
 
 ## 🎯 Objetivos
 
 1. Automatizar la creación de infraestructura en Azure usando Terraform
-2. Desplegar un cluster de Kubernetes gestionado (AKS)
-3. Desplegar una aplicación web (Nginx) en el cluster
+2. Desplegar un cluster de Kubernetes gestionado (AKS) con 2 nodos
+3. Desplegar una aplicación web (Nginx) con 3 réplicas en el cluster
 4. Exponer la aplicación al público mediante un LoadBalancer
-5. Documentar todo el proceso con evidencias
+5. Documentar todo el proceso con evidencias de cada paso
 
 ## 📁 Estructura del Proyecto
 
@@ -61,14 +61,21 @@ Manifiesto de Kubernetes que define:
 - [ ] kubectl instalado
 - [ ] Autenticación configurada en Azure
 
-## 📸 Evidencia: Requisitos Previos
-```
-# Insertar captura de pantalla mostrando las versiones:
-az --version
-terraform --version
-kubectl version --client
-```
-*[Aquí insertar captura de pantalla de las versiones instaladas]*
+## 📸 Evidencia 1: Verificación de Requisitos Previos
+
+Se verificaron las versiones de las herramientas necesarias para el proyecto:
+
+![Versiones instaladas](screenshots/01-versiones.png)
+
+**Herramientas verificadas:**
+- Azure CLI: 2.77.0
+- Terraform: v1.13.5
+- kubectl: v1.29.1
+
+**Suscripción de Azure:**
+- Nombre: Azure for Students
+- Universidad: Universidad Icesi
+- Usuario: 1006172314@u.icesi.edu.co
 
 ---
 
@@ -87,8 +94,16 @@ az account show
 az account set --subscription "SUBSCRIPTION_ID"
 ```
 
-## 📸 Evidencia: Autenticación Azure
-*[Aquí insertar captura de pantalla del `az account show`]*
+## 📸 Evidencia 2: Autenticación en Azure
+
+Autenticación exitosa con Azure CLI:
+
+![Azure Account Show](screenshots/02-azure-account.png)
+
+**Detalles de la suscripción:**
+- Environment: AzureCloud
+- Subscription ID: f34cf60c-25dc-4f10-96d4-489b7a79abd5
+- Tenant: Universidad Icesi (icesi.edu.co)
 
 ---
 
@@ -104,8 +119,17 @@ Este comando:
 - Prepara el directorio de trabajo
 - Crea el directorio `.terraform/`
 
-## 📸 Evidencia: Terraform Init
-*[Aquí insertar captura de pantalla del `terraform init` exitoso]*
+## 📸 Evidencia 3: Terraform Init
+
+Inicialización exitosa de Terraform con descarga de providers:
+
+![Terraform Init](screenshots/03-terraform-init.png)
+
+**Providers instalados:**
+- hashicorp/azurerm v3.117.1
+- hashicorp/kubernetes v2.38.0
+
+Se creó el archivo `.terraform.lock.hcl` para garantizar consistencia en futuras ejecuciones.
 
 ---
 
@@ -116,8 +140,13 @@ Este comando:
 terraform validate
 ```
 
-## 📸 Evidencia: Terraform Validate
-*[Aquí insertar captura de pantalla mostrando "Success! The configuration is valid."]*
+## 📸 Evidencia 4: Terraform Validate
+
+Validación exitosa de la sintaxis y configuración:
+
+![Terraform Validate](screenshots/04-terraform-validate.png)
+
+**Resultado:** Success! The configuration is valid.
 
 ---
 
@@ -133,8 +162,27 @@ Este comando muestra:
 - Configuración de cada recurso
 - Estimación de cambios
 
-## 📸 Evidencia: Terraform Plan
-*[Aquí insertar captura de pantalla del plan mostrando los recursos a crear]*
+## 📸 Evidencia 5-9: Terraform Plan
+
+Plan de ejecución detallado mostrando todos los recursos a crear:
+
+![Terraform Plan - Parte 1](screenshots/05-terraform-plan-1.png)
+![Terraform Plan - Parte 2](screenshots/06-terraform-plan-2.png)
+![Terraform Plan - Parte 3](screenshots/07-terraform-plan-3.png)
+![Terraform Plan - Parte 4](screenshots/08-terraform-plan-4.png)
+![Terraform Plan - Resumen](screenshots/09-terraform-plan-summary.png)
+
+**Recursos planificados:**
+- 1 Resource Group (myResourceGroup)
+- 1 AKS Cluster (myakscluster)
+  - Región: South Central US
+  - Tamaño de VM: standard_b2ps_v2
+  - Número de nodos: 2
+  - Network plugin: Azure CNI
+  - Load Balancer: Standard
+- 2 Data sources para credenciales de Kubernetes
+
+**Plan:** 2 to add, 0 to change, 0 to destroy
 
 ---
 
@@ -149,8 +197,27 @@ Terraform preguntará confirmación. Escribir `yes` para continuar.
 
 **Tiempo estimado**: 5-10 minutos
 
-## 📸 Evidencia: Terraform Apply
-*[Aquí insertar captura de pantalla del `terraform apply` completado exitosamente]*
+## 📸 Evidencia 10-11: Terraform Apply
+
+Creación exitosa de la infraestructura en Azure:
+
+![Terraform Apply - Proceso](screenshots/10-terraform-apply-creating.png)
+![Terraform Apply - Completado](screenshots/11-terraform-apply-complete.png)
+
+**Resultado:**
+- ✅ Resource Group creado en 13 segundos
+- ✅ AKS Cluster creado en 4 minutos y 17 segundos
+- ✅ Data sources leídos correctamente
+
+**Apply complete! Resources: 1 added, 0 changed, 0 destroyed.**
+
+**Outputs generados:**
+- cluster_name = "myakscluster"
+- resource_group_name = "myResourceGroup"
+- client_certificate = (sensitive)
+- cluster_ca_certificate = (sensitive)
+- host = (sensitive)
+- kube_config = (sensitive)
 
 ---
 
@@ -164,8 +231,17 @@ az aks get-credentials --resource-group myResourceGroup --name myakscluster
 kubectl get nodes
 ```
 
-## 📸 Evidencia: Conexión al Cluster
-*[Aquí insertar captura de pantalla mostrando los nodos del cluster activos]*
+## 📸 Evidencia 12: Conexión al Cluster
+
+Obtención de credenciales y verificación de nodos:
+
+![Kubectl Get Nodes](screenshots/12-kubectl-get-nodes.png)
+
+**Nodos del cluster:**
+- aks-default-34679462-vmss000000: Ready, 96m de antigüedad, versión v1.32.9
+- aks-default-34679462-vmss000001: Ready, 96m de antigüedad, versión v1.32.9
+
+Las credenciales se guardaron en: `C:\Users\Asus Rog Strix\.kube\config`
 
 ---
 
@@ -185,12 +261,30 @@ kubectl get pods
 kubectl get services
 ```
 
-## 📸 Evidencia: Despliegue de Nginx
-*[Aquí insertar captura de pantalla mostrando deployments, pods y services]*
+## 📸 Evidencia 13: Despliegue de Nginx
+
+Aplicación del manifiesto de Kubernetes:
+
+![Kubectl Apply](screenshots/13-kubectl-apply-all.png)
+
+**Recursos creados:**
+- Deployment: nginx-deployment (3/3 réplicas disponibles)
+- Service: nginx-service (tipo LoadBalancer)
+
+**Pods en ejecución:**
+- nginx-deployment-96b9d695-cnn5d: Running (22h)
+- nginx-deployment-96b9d695-dzctx: Running (22h)
+- nginx-deployment-96b9d695-f8msl: Running (22h)
+
+**Service:**
+- Tipo: LoadBalancer
+- Cluster-IP: 10.0.163.3
+- External-IP: 20.165.102.69
+- Puerto: 80:30093/TCP
 
 ---
 
-### Paso 8: Obtener la IP Externa
+### Paso 8: Verificar Recursos de Kubernetes
 
 ```bash
 # Esperar a que se asigne la IP externa (puede tomar unos minutos)
@@ -199,8 +293,25 @@ kubectl get services --watch
 # Una vez asignada, copiar la EXTERNAL-IP del nginx-service
 ```
 
-## 📸 Evidencia: IP Externa Asignada
-*[Aquí insertar captura de pantalla mostrando el servicio con EXTERNAL-IP]*
+## 📸 Evidencia 14: Detalles del Servicio
+
+Información detallada del LoadBalancer:
+
+![Kubectl Describe Service](screenshots/14-kubectl-describe-service.png)
+
+**Detalles del Service nginx-service:**
+- Name: nginx-service
+- Namespace: default
+- Selector: app=nginx
+- Type: LoadBalancer
+- IP Families: IPv4
+- Cluster IP: 10.0.163.3
+- LoadBalancer Ingress: **20.165.102.69**
+- Port: 80/TCP
+- TargetPort: 80/TCP
+- NodePort: 30093/TCP
+- Endpoints: 3 pods (10.224.0.13:80, 10.224.0.14:80, 10.224.0.38:80)
+- External Traffic Policy: Cluster
 
 ---
 
@@ -213,20 +324,40 @@ curl http://<EXTERNAL-IP>
 # O abrir en el navegador
 ```
 
-## 📸 Evidencia: Aplicación Funcionando
-*[Aquí insertar captura de pantalla del navegador mostrando la página de bienvenida de Nginx]*
+## 📸 Evidencia 15: Aplicación Funcionando
+
+Nginx accesible desde el navegador a través de la IP pública:
+
+![Nginx en Navegador](screenshots/15-nginx-browser.png)
+
+**URL de acceso:** http://20.165.102.69
+
+La página muestra el mensaje:
+> **"Welcome to nginx!"**
+> 
+> If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
+
+✅ **La aplicación está funcionando correctamente y es accesible desde Internet.**
 
 ---
 
 ## 🔍 Verificaciones Adicionales
 
 ### Ver detalles del cluster en Azure Portal
-1. Ir a Azure Portal
-2. Buscar el Resource Group creado
-3. Ver el cluster AKS y sus componentes
 
-## 📸 Evidencia: Azure Portal
-*[Aquí insertar capturas de pantalla del Resource Group y el cluster AKS en Azure Portal]*
+**Para acceder al Azure Portal:**
+1. Ir a https://portal.azure.com
+2. Buscar "Resource Groups" o "Grupos de recursos"
+3. Seleccionar `myResourceGroup`
+4. Ver el cluster AKS `myakscluster` y sus componentes
+
+**Recursos creados en Azure:**
+- Resource Group: myResourceGroup (South Central US)
+- AKS Cluster: myakscluster
+- Virtual Network
+- Load Balancer
+- Network Security Groups
+- Discos administrados para los nodos
 
 ---
 
@@ -246,8 +377,28 @@ kubectl logs <nombre-del-pod>
 kubectl describe service nginx-service
 ```
 
-## 📸 Evidencia: Recursos de Kubernetes
-*[Aquí insertar capturas de pantalla de los comandos kubectl]*
+**Comandos adicionales ejecutados:**
+
+```bash
+# Ver todos los recursos
+kubectl get all
+
+# Ver información del cluster
+kubectl cluster-info
+
+# Ver logs de un pod
+kubectl logs nginx-deployment-96b9d695-cnn5d
+
+# Ver detalles del deployment
+kubectl describe deployment nginx-deployment
+```
+
+**Estado del deployment:**
+- Desired: 3 réplicas
+- Current: 3 réplicas
+- Up-to-date: 3 réplicas
+- Available: 3 réplicas
+- ReplicaSet: nginx-deployment-96b9d695
 
 ---
 
@@ -265,22 +416,36 @@ terraform destroy
 
 Terraform pedirá confirmación. Escribir `yes` para continuar.
 
-## 📸 Evidencia: Limpieza
-*[Aquí insertar captura de pantalla del `terraform destroy` completado]*
+**Comandos para limpiar:**
+```bash
+# 1. Eliminar recursos de Kubernetes
+kubectl delete -f nginx-deployment.yaml
+
+# 2. Destruir infraestructura de Azure
+terraform destroy
+```
+
+⚠️ **IMPORTANTE:** Recuerda eliminar los recursos cuando termines para evitar costos innecesarios en tu suscripción de Azure.
 
 ---
 
-## ⚙️ Personalización
+## ⚙️ Configuración Final del Proyecto
 
-Para modificar la configuración, editar las variables en `variables.tf` o usar un archivo `terraform.tfvars`:
+**Configuración utilizada en este proyecto:**
 
 ```hcl
-aks_cluster_name    = "mi-cluster-personalizado"
-resource_group_name = "mi-rg-personalizado"
-location            = "West Europe"
-node_count          = 3
-node_vm_size        = "Standard_DS2_v2"
+# variables.tf
+aks_cluster_name    = "myakscluster"
+resource_group_name = "myResourceGroup"
+location            = "South Central US"  # Región permitida en la suscripción
+node_count          = 2
+node_vm_size        = "standard_b2ps_v2"  # Tamaño de VM permitido
 ```
+
+**Notas importantes:**
+- La región se cambió a **South Central US** debido a políticas de restricción de la suscripción
+- El tamaño de VM **standard_b2ps_v2** se seleccionó por ser uno de los tamaños permitidos en la región
+- Se utilizó Azure CNI como network plugin para mejor integración con Azure
 
 ---
 
@@ -304,20 +469,45 @@ node_vm_size        = "Standard_DS2_v2"
 
 ---
 
-## 📚 Recursos Adicionales
+## 🏆 Resultados Obtenidos
+
+✅ **Cluster AKS desplegado exitosamente** con 2 nodos en South Central US
+✅ **Nginx corriendo** con 3 réplicas en alta disponibilidad
+✅ **LoadBalancer configurado** con IP pública 20.165.102.69
+✅ **Aplicación accesible** desde Internet
+✅ **Infraestructura como código** completamente funcional y reutilizable
+
+**Tiempo total de despliegue:** ~5-7 minutos (sin contar troubleshooting inicial)
+
+---
+
+## � Lecciones Aprendidas
+
+1. **Políticas de Azure:** Las suscripciones de Azure for Students tienen restricciones de región y tamaños de VM
+2. **Troubleshooting:** Se resolvieron errores de región no permitida y tamaño de VM no disponible
+3. **IaC con Terraform:** La importancia de variables configurables para adaptarse a diferentes entornos
+4. **Kubernetes en Azure:** Integración fluida entre Azure y Kubernetes mediante AKS
+5. **LoadBalancer:** Azure aprovisiona automáticamente IPs públicas para servicios de tipo LoadBalancer
+
+---
+
+## �📚 Recursos Adicionales
 
 - [Documentación de Azure AKS](https://learn.microsoft.com/en-us/azure/aks/)
 - [Documentación de Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [Documentación de Kubernetes](https://kubernetes.io/docs/home/)
-- [Terraform Best Practices](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html)
+- [Azure Kubernetes Service (AKS) Pricing](https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/)
 
 ---
 
 ## 👤 Autor
 
-**Tu Nombre**  
-Proyecto de Infraestructura como Código  
+**Juan Sebastián**  
+Universidad Icesi - 8vo Semestre  
+Plataformas II  
 Fecha: Noviembre 2025
+
+**Repositorio:** https://github.com/Juansex/AKS-Cluster
 
 ---
 
@@ -329,14 +519,15 @@ Este proyecto está bajo la licencia especificada en el archivo `LICENSE.txt`.
 
 ## ✅ Checklist de Entrega
 
-- [ ] Código fuente completo subido al repositorio
-- [ ] README con toda la documentación
-- [ ] Capturas de pantalla de cada paso insertadas
-- [ ] Evidencia de terraform init, plan, apply
-- [ ] Evidencia del cluster en Azure Portal
-- [ ] Evidencia de kubectl mostrando recursos
-- [ ] Evidencia de Nginx funcionando (navegador)
-- [ ] Evidencia de terraform destroy (limpieza)
+- [✅] Código fuente completo subido al repositorio
+- [✅] README con toda la documentación
+- [✅] 15 capturas de pantalla documentando cada paso
+- [✅] Evidencia de terraform init, validate, plan, apply
+- [✅] Evidencia de autenticación con Azure
+- [✅] Evidencia de kubectl mostrando recursos
+- [✅] Evidencia de Nginx funcionando (navegador con IP pública)
+- [✅] Evidencia de configuración del LoadBalancer
+- [✅] Documentación de troubleshooting y soluciones aplicadas
 
 ---
 
