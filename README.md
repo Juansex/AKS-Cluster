@@ -65,7 +65,8 @@ Manifiesto de Kubernetes que define:
 
 Se verificaron las versiones de las herramientas necesarias para el proyecto:
 
-![Versiones instaladas](screenshots/01-versiones.png)
+<img width="1223" height="773" alt="AKS_pic_1" src="https://github.com/user-attachments/assets/69c9307f-8895-43e7-a17b-0e6c126a6d56" />
+
 
 **Herramientas verificadas:**
 - Azure CLI: 2.77.0
