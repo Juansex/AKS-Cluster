@@ -99,7 +99,8 @@ az account set --subscription "SUBSCRIPTION_ID"
 
 Autenticación exitosa con Azure CLI:
 
-![Azure Account Show](screenshots/02-azure-account.png)
+<img width="1115" height="457" alt="AKS_pic_2" src="https://github.com/user-attachments/assets/e4f6a715-757a-408a-b744-edd5edab8ee8" />
+
 
 **Detalles de la suscripción:**
 - Environment: AzureCloud
@@ -124,7 +125,8 @@ Este comando:
 
 Inicialización exitosa de Terraform con descarga de providers:
 
-![Terraform Init](screenshots/03-terraform-init.png)
+<img width="1507" height="752" alt="AKS_pic_3" src="https://github.com/user-attachments/assets/98af3bec-19c5-4f3a-9e88-41c38607c243" />
+
 
 **Providers instalados:**
 - hashicorp/azurerm v3.117.1
@@ -145,7 +147,8 @@ terraform validate
 
 Validación exitosa de la sintaxis y configuración:
 
-![Terraform Validate](screenshots/04-terraform-validate.png)
+<img width="1217" height="106" alt="AKS_pic_4" src="https://github.com/user-attachments/assets/8adb4c96-d7ed-4ea5-9dd7-c87ad0bbe660" />
+
 
 **Resultado:** Success! The configuration is valid.
 
@@ -167,11 +170,16 @@ Este comando muestra:
 
 Plan de ejecución detallado mostrando todos los recursos a crear:
 
-![Terraform Plan - Parte 1](screenshots/05-terraform-plan-1.png)
-![Terraform Plan - Parte 2](screenshots/06-terraform-plan-2.png)
-![Terraform Plan - Parte 3](screenshots/07-terraform-plan-3.png)
-![Terraform Plan - Parte 4](screenshots/08-terraform-plan-4.png)
-![Terraform Plan - Resumen](screenshots/09-terraform-plan-summary.png)
+<img width="1917" height="1012" alt="AKS_pic_5 1" src="https://github.com/user-attachments/assets/57f9cf29-eaba-4a90-a04f-6fad90591ce4" />
+
+<img width="1918" height="1016" alt="AKS_pic_5 2" src="https://github.com/user-attachments/assets/6f98aa55-e6f1-42ba-8be3-3611206331ca" />
+
+<img width="1913" height="1012" alt="AKS_pic_5 3" src="https://github.com/user-attachments/assets/131ccb1b-c90b-407f-b39d-80ac3474b42a" />
+
+<img width="1916" height="1005" alt="AKS_pic_5 4" src="https://github.com/user-attachments/assets/a8438561-e49b-491a-8d90-a7e31c330173" />
+
+<img width="1918" height="832" alt="AKS_pic_5 5" src="https://github.com/user-attachments/assets/1c84ef3d-602f-4097-9162-7a6c570e81f8" />
+
 
 **Recursos planificados:**
 - 1 Resource Group (myResourceGroup)
@@ -202,8 +210,9 @@ Terraform preguntará confirmación. Escribir `yes` para continuar.
 
 Creación exitosa de la infraestructura en Azure:
 
-![Terraform Apply - Proceso](screenshots/10-terraform-apply-creating.png)
-![Terraform Apply - Completado](screenshots/11-terraform-apply-complete.png)
+<img width="1918" height="1000" alt="AKS_pic_6 1" src="https://github.com/user-attachments/assets/6b194ef0-3cf5-4083-ae71-7dbd743fea8f" />
+
+<img width="1912" height="1022" alt="AKS_pic_6 2" src="https://github.com/user-attachments/assets/b0e448fc-5f64-4fa8-8c8c-2c9115fa1e18" />
 
 **Resultado:**
 - ✅ Resource Group creado en 13 segundos
@@ -236,7 +245,8 @@ kubectl get nodes
 
 Obtención de credenciales y verificación de nodos:
 
-![Kubectl Get Nodes](screenshots/12-kubectl-get-nodes.png)
+<img width="1916" height="1013" alt="AKS_pic_6 3" src="https://github.com/user-attachments/assets/67cfdf4f-a8b8-481b-93f0-46e9ca9031cc" />
+
 
 **Nodos del cluster:**
 - aks-default-34679462-vmss000000: Ready, 96m de antigüedad, versión v1.32.9
@@ -266,7 +276,8 @@ kubectl get services
 
 Aplicación del manifiesto de Kubernetes:
 
-![Kubectl Apply](screenshots/13-kubectl-apply-all.png)
+<img width="1918" height="1022" alt="AKS_pic_6 4" src="https://github.com/user-attachments/assets/f955ba80-36e6-4fda-99fb-21156beff382" />
+
 
 **Recursos creados:**
 - Deployment: nginx-deployment (3/3 réplicas disponibles)
@@ -298,7 +309,8 @@ kubectl get services --watch
 
 Información detallada del LoadBalancer:
 
-![Kubectl Describe Service](screenshots/14-kubectl-describe-service.png)
+<img width="1911" height="1010" alt="AKS_pic_6 5" src="https://github.com/user-attachments/assets/d0c73a90-a1d5-4669-9f1b-389863141f91" />
+
 
 **Detalles del Service nginx-service:**
 - Name: nginx-service
@@ -329,7 +341,8 @@ curl http://<EXTERNAL-IP>
 
 Nginx accesible desde el navegador a través de la IP pública:
 
-![Nginx en Navegador](screenshots/15-nginx-browser.png)
+<img width="1918" height="1013" alt="AKS_pic_6 6" src="https://github.com/user-attachments/assets/fd8ca66b-6372-458c-9a0d-59f128bcf124" />
+
 
 **URL de acceso:** http://20.165.102.69
 
