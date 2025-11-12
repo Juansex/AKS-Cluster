@@ -276,7 +276,8 @@ kubectl get services
 
 Aplicación del manifiesto de Kubernetes:
 
-<img width="1918" height="1022" alt="AKS_pic_6 4" src="https://github.com/user-attachments/assets/f955ba80-36e6-4fda-99fb-21156beff382" />
+<img width="1505" height="755" alt="AKS_pic_7" src="https://github.com/user-attachments/assets/8c71bc03-d411-4268-a9b4-d9ea06e5d171" />
+
 
 
 **Recursos creados:**
@@ -309,7 +310,7 @@ kubectl get services --watch
 
 Información detallada del LoadBalancer:
 
-<img width="1911" height="1010" alt="AKS_pic_6 5" src="https://github.com/user-attachments/assets/d0c73a90-a1d5-4669-9f1b-389863141f91" />
+<img width="1078" height="370" alt="AKS_pic_9" src="https://github.com/user-attachments/assets/89df27c6-611e-4a06-849d-66d342e5690e" />
 
 
 **Detalles del Service nginx-service:**
@@ -341,7 +342,8 @@ curl http://<EXTERNAL-IP>
 
 Nginx accesible desde el navegador a través de la IP pública:
 
-<img width="1918" height="1013" alt="AKS_pic_6 6" src="https://github.com/user-attachments/assets/fd8ca66b-6372-458c-9a0d-59f128bcf124" />
+<img width="1907" height="377" alt="AKS_pic_10" src="https://github.com/user-attachments/assets/45067892-01b6-4844-bb32-e0638e71aa04" />
+
 
 
 **URL de acceso:** http://20.165.102.69
