@@ -1,11 +1,11 @@
 # AKS-Cluster
-# 🚀 Despliegue de Cluster AKS con Terraform y Nginx
+#  Despliegue de Cluster AKS con Terraform y Nginx
 
-## 📋 Descripción del Proyecto
+##  Descripción del Proyecto
 
 Este proyecto implementa la creación de un **cluster de Azure Kubernetes Service (AKS)** utilizando **Terraform** como herramienta de Infrastructure as Code (IaC). Una vez creado el cluster, se despliega una aplicación **Nginx** con múltiples réplicas y se expone mediante un servicio LoadBalancer para acceso público.
 
-## 🎯 Objetivos
+##  Objetivos
 
 1. Automatizar la creación de infraestructura en Azure usando Terraform
 2. Desplegar un cluster de Kubernetes gestionado (AKS) con 2 nodos
@@ -13,7 +13,7 @@ Este proyecto implementa la creación de un **cluster de Azure Kubernetes Servic
 4. Exponer la aplicación al público mediante un LoadBalancer
 5. Documentar todo el proceso con evidencias de cada paso
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 AKS-Cluster/
@@ -25,7 +25,7 @@ AKS-Cluster/
 └── README.md                 # Documentación (este archivo)
 ```
 
-## 📝 Descripción de los Archivos
+##  Descripción de los Archivos
 
 ### `main.tf`
 Contiene la definición de los recursos principales:
@@ -53,7 +53,7 @@ Manifiesto de Kubernetes que define:
 - **Deployment**: 3 réplicas de Nginx
 - **Service**: LoadBalancer en el puerto 80
 
-## 🛠️ Requisitos Previos
+##  Requisitos Previos
 
 - [ ] Cuenta de Azure activa
 - [ ] Azure CLI instalado
@@ -61,7 +61,7 @@ Manifiesto de Kubernetes que define:
 - [ ] kubectl instalado
 - [ ] Autenticación configurada en Azure
 
-## 📸 Evidencia 1: Verificación de Requisitos Previos
+##  Evidencia 1: Verificación de Requisitos Previos
 
 Se verificaron las versiones de las herramientas necesarias para el proyecto:
 
@@ -80,7 +80,7 @@ Se verificaron las versiones de las herramientas necesarias para el proyecto:
 
 ---
 
-## 🚀 Proceso de Despliegue
+##  Proceso de Despliegue
 
 ### Paso 1: Autenticación en Azure
 
@@ -95,7 +95,7 @@ az account show
 az account set --subscription "SUBSCRIPTION_ID"
 ```
 
-## 📸 Evidencia 2: Autenticación en Azure
+##  Evidencia 2: Autenticación en Azure
 
 Autenticación exitosa con Azure CLI:
 
@@ -121,7 +121,7 @@ Este comando:
 - Prepara el directorio de trabajo
 - Crea el directorio `.terraform/`
 
-## 📸 Evidencia 3: Terraform Init
+##  Evidencia 3: Terraform Init
 
 Inicialización exitosa de Terraform con descarga de providers:
 
@@ -143,7 +143,7 @@ Se creó el archivo `.terraform.lock.hcl` para garantizar consistencia en futura
 terraform validate
 ```
 
-## 📸 Evidencia 4: Terraform Validate
+##  Evidencia 4: Terraform Validate
 
 Validación exitosa de la sintaxis y configuración:
 
@@ -166,7 +166,7 @@ Este comando muestra:
 - Configuración de cada recurso
 - Estimación de cambios
 
-## 📸 Evidencia 5-9: Terraform Plan
+##  Evidencia 5-9: Terraform Plan
 
 Plan de ejecución detallado mostrando todos los recursos a crear:
 
@@ -215,9 +215,9 @@ Creación exitosa de la infraestructura en Azure:
 <img width="1912" height="1022" alt="AKS_pic_6 2" src="https://github.com/user-attachments/assets/b0e448fc-5f64-4fa8-8c8c-2c9115fa1e18" />
 
 **Resultado:**
-- ✅ Resource Group creado en 13 segundos
-- ✅ AKS Cluster creado en 4 minutos y 17 segundos
-- ✅ Data sources leídos correctamente
+-  Resource Group creado en 13 segundos
+-  AKS Cluster creado en 4 minutos y 17 segundos
+-  Data sources leídos correctamente
 
 **Apply complete! Resources: 1 added, 0 changed, 0 destroyed.**
 
@@ -241,7 +241,7 @@ az aks get-credentials --resource-group myResourceGroup --name myakscluster
 kubectl get nodes
 ```
 
-## 📸 Evidencia 12: Conexión al Cluster
+##  Evidencia 12: Conexión al Cluster
 
 Obtención de credenciales y verificación de nodos:
 
@@ -272,7 +272,7 @@ kubectl get pods
 kubectl get services
 ```
 
-## 📸 Evidencia 13: Despliegue de Nginx
+##  Evidencia 13: Despliegue de Nginx
 
 Aplicación del manifiesto de Kubernetes:
 
@@ -306,7 +306,7 @@ kubectl get services --watch
 # Una vez asignada, copiar la EXTERNAL-IP del nginx-service
 ```
 
-## 📸 Evidencia 14: Detalles del Servicio
+##  Evidencia 14: Detalles del Servicio
 
 Información detallada del LoadBalancer:
 
@@ -338,7 +338,7 @@ curl http://<EXTERNAL-IP>
 # O abrir en el navegador
 ```
 
-## 📸 Evidencia 15: Aplicación Funcionando
+##  Evidencia 15: Aplicación Funcionando
 
 Nginx accesible desde el navegador a través de la IP pública:
 
@@ -353,11 +353,11 @@ La página muestra el mensaje:
 > 
 > If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
 
-✅ **La aplicación está funcionando correctamente y es accesible desde Internet.**
+ **La aplicación está funcionando correctamente y es accesible desde Internet.**
 
 ---
 
-## 🔍 Verificaciones Adicionales
+##  Verificaciones Adicionales
 
 ### Ver detalles del cluster en Azure Portal
 
@@ -418,7 +418,7 @@ kubectl describe deployment nginx-deployment
 
 ---
 
-## 🧹 Limpieza de Recursos
+##  Limpieza de Recursos
 
 Para evitar costos innecesarios, eliminar los recursos cuando termines:
 
@@ -441,11 +441,11 @@ kubectl delete -f nginx-deployment.yaml
 terraform destroy
 ```
 
-⚠️ **IMPORTANTE:** Recuerda eliminar los recursos cuando termines para evitar costos innecesarios en tu suscripción de Azure.
+ **IMPORTANTE:** Recuerda eliminar los recursos cuando termines para evitar costos innecesarios en tu suscripción de Azure.
 
 ---
 
-## ⚙️ Configuración Final del Proyecto
+##  Configuración Final del Proyecto
 
 **Configuración utilizada en este proyecto:**
 
@@ -465,7 +465,7 @@ node_vm_size        = "standard_b2ps_v2"  # Tamaño de VM permitido
 
 ---
 
-## 🐛 Solución de Problemas
+##  Solución de Problemas
 
 ### Error: Provider authentication
 **Problema**: Terraform no puede autenticarse con Azure  
@@ -485,19 +485,19 @@ node_vm_size        = "standard_b2ps_v2"  # Tamaño de VM permitido
 
 ---
 
-## 🏆 Resultados Obtenidos
+##  Resultados Obtenidos
 
-✅ **Cluster AKS desplegado exitosamente** con 2 nodos en South Central US
-✅ **Nginx corriendo** con 3 réplicas en alta disponibilidad
-✅ **LoadBalancer configurado** con IP pública 20.165.102.69
-✅ **Aplicación accesible** desde Internet
-✅ **Infraestructura como código** completamente funcional y reutilizable
+ **Cluster AKS desplegado exitosamente** con 2 nodos en South Central US
+ **Nginx corriendo** con 3 réplicas en alta disponibilidad
+ **LoadBalancer configurado** con IP pública 20.165.102.69
+ **Aplicación accesible** desde Internet
+ **Infraestructura como código** completamente funcional y reutilizable
 
 **Tiempo total de despliegue:** ~5-7 minutos (sin contar troubleshooting inicial)
 
 ---
 
-## � Lecciones Aprendidas
+##  Lecciones Aprendidas
 
 1. **Políticas de Azure:** Las suscripciones de Azure for Students tienen restricciones de región y tamaños de VM
 2. **Troubleshooting:** Se resolvieron errores de región no permitida y tamaño de VM no disponible
@@ -507,7 +507,7 @@ node_vm_size        = "standard_b2ps_v2"  # Tamaño de VM permitido
 
 ---
 
-## �📚 Recursos Adicionales
+##  Recursos Adicionales
 
 - [Documentación de Azure AKS](https://learn.microsoft.com/en-us/azure/aks/)
 - [Documentación de Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
@@ -516,7 +516,7 @@ node_vm_size        = "standard_b2ps_v2"  # Tamaño de VM permitido
 
 ---
 
-## 👤 Autor
+##  Autor
 
 **Juan Sebastián**  
 Universidad Icesi - 8vo Semestre  
@@ -527,27 +527,13 @@ Fecha: Noviembre 2025
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la licencia especificada en el archivo `LICENSE.txt`.
 
 ---
 
-## ✅ Checklist de Entrega
-
-- [✅] Código fuente completo subido al repositorio
-- [✅] README con toda la documentación
-- [✅] 15 capturas de pantalla documentando cada paso
-- [✅] Evidencia de terraform init, validate, plan, apply
-- [✅] Evidencia de autenticación con Azure
-- [✅] Evidencia de kubectl mostrando recursos
-- [✅] Evidencia de Nginx funcionando (navegador con IP pública)
-- [✅] Evidencia de configuración del LoadBalancer
-- [✅] Documentación de troubleshooting y soluciones aplicadas
-
----
-
-## 🎓 Notas de Aprendizaje
+## Notas de Aprendizaje
 
 ### Conceptos Clave
 - **IaC (Infrastructure as Code)**: Gestión de infraestructura mediante código
@@ -557,14 +543,4 @@ Este proyecto está bajo la licencia especificada en el archivo `LICENSE.txt`.
 - **Deployment**: Objeto de Kubernetes que gestiona réplicas de pods
 - **Service**: Abstracción que expone aplicaciones en Kubernetes
 
-### Buenas Prácticas Implementadas
-1. Uso de variables para configuración reutilizable
-2. Separación de concerns (archivos diferentes para providers, variables, recursos)
-3. Outputs para información útil del cluster
-4. Tags para organización de recursos
-5. Network plugin Azure para mejor integración
-6. SystemAssigned identity para seguridad
-
 ---
-
-**¡Proyecto completado! 🎉**
