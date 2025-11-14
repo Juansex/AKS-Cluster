@@ -61,7 +61,7 @@ Manifiesto de Kubernetes que define:
 - [ ] kubectl instalado
 - [ ] Autenticación configurada en Azure
 
-##  Evidencia 1: Verificación de Requisitos Previos
+##  Verificación de Requisitos Previos
 
 Se verificaron las versiones de las herramientas necesarias para el proyecto:
 
@@ -95,7 +95,7 @@ az account show
 az account set --subscription "SUBSCRIPTION_ID"
 ```
 
-##  Evidencia 2: Autenticación en Azure
+##  Autenticación en Azure
 
 Autenticación exitosa con Azure CLI:
 
@@ -121,7 +121,7 @@ Este comando:
 - Prepara el directorio de trabajo
 - Crea el directorio `.terraform/`
 
-##  Evidencia 3: Terraform Init
+##  Terraform Init
 
 Inicialización exitosa de Terraform con descarga de providers:
 
@@ -143,7 +143,7 @@ Se creó el archivo `.terraform.lock.hcl` para garantizar consistencia en futura
 terraform validate
 ```
 
-##  Evidencia 4: Terraform Validate
+##  Terraform Validate
 
 Validación exitosa de la sintaxis y configuración:
 
@@ -166,7 +166,7 @@ Este comando muestra:
 - Configuración de cada recurso
 - Estimación de cambios
 
-##  Evidencia 5-9: Terraform Plan
+##  Terraform Plan
 
 Plan de ejecución detallado mostrando todos los recursos a crear:
 
@@ -206,7 +206,7 @@ Terraform preguntará confirmación. Escribir `yes` para continuar.
 
 **Tiempo estimado**: 5-10 minutos
 
-## 📸 Evidencia 10-11: Terraform Apply
+## Terraform Apply
 
 Creación exitosa de la infraestructura en Azure:
 
@@ -272,7 +272,7 @@ kubectl get pods
 kubectl get services
 ```
 
-##  Evidencia 13: Despliegue de Nginx
+##  Despliegue de Nginx
 
 Aplicación del manifiesto de Kubernetes:
 
@@ -306,7 +306,7 @@ kubectl get services --watch
 # Una vez asignada, copiar la EXTERNAL-IP del nginx-service
 ```
 
-##  Evidencia 14: Detalles del Servicio
+##  Detalles del Servicio
 
 Información detallada del LoadBalancer:
 
@@ -338,7 +338,7 @@ curl http://<EXTERNAL-IP>
 # O abrir en el navegador
 ```
 
-##  Evidencia 15: Aplicación Funcionando
+##  Aplicación Funcionando
 
 Nginx accesible desde el navegador a través de la IP pública:
 
